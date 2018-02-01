@@ -32,7 +32,7 @@ recognition.onnomatch = function() {
   recognition.onresult = function(event) {
    
     var speechResult = event.results[0][0].transcript;
-    console.log("1st " + speechResult)
+    console.log(speechResult)
     if(speechResult === phrase) {
 
         /*  const recognition2 = new SpeechRecognition();
@@ -47,7 +47,7 @@ recognition.onnomatch = function() {
         }*/
 
     } else {
-      console.log("you didnt say search")
+      console.log("you didnt say find")
     }
 
     console.log('Confidence: ' + event.results[0][0].confidence);
