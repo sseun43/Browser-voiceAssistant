@@ -7,7 +7,7 @@ const SpeechRecognition =  webkitSpeechRecognition;
 const SpeechGrammarList =  webkitSpeechGrammarList;
 const SpeechRecognitionEvent =  webkitSpeechRecognitionEvent;
 
-const phrase = "Search"
+const phrase = "search"
 
 const testSpeech= ()=> {
   //testBtn.disabled = true;
@@ -34,15 +34,16 @@ const testSpeech= ()=> {
     //diagnosticPara.textContent = 'Speech received: ' + speechResult + '.';
     if(speechResult === phrase) {
 
-      const recognition2 = new SpeechRecognition();
-        recognition2.lang = 'en-US';
-      recognition2.interimResults = false;
-      recognition2.maxAlternatives = 1;
-    recognition2.start();
-    recognition2.onresult = function(event){
-      var speechResult2 = event.results[0][0].transcript
-      console.log(speechResult2)
-    }
+          const recognition2 = new SpeechRecognition();
+            recognition2.lang = 'en-US';
+          recognition2.interimResults = false;
+          recognition2.maxAlternatives = 1;
+        recognition2.start();
+        recognition2.onresult = function(event){
+          var speechResult2 = event.results[0][0].transcript
+          console.log(speechResult2)
+        }
+
     } else {
       console.log("not searching")
     }
