@@ -1,19 +1,13 @@
 $(document).ready(function(){
 
-   // jQuery methods go here...
-
 
 const SpeechRecognition =  webkitSpeechRecognition;
 const SpeechGrammarList =  webkitSpeechGrammarList;
 const SpeechRecognitionEvent =  webkitSpeechRecognitionEvent;
 
-const phrase = "search"
+const phrase = "find"
 
 const testSpeech= ()=> {
-  //testBtn.disabled = true;
-  //testBtn.textContent = 'Test in progress';
-
-  //const phrase = "Search"
   
 
   const grammar = '#JSGF V1.0; grammar phrase; public <phrase> = ' + phrase +';';
@@ -39,10 +33,9 @@ recognition.onnomatch = function() {
    
     var speechResult = event.results[0][0].transcript;
     console.log("1st " + speechResult)
-    //diagnosticPara.textContent = 'Speech received: ' + speechResult + '.';
     if(speechResult === phrase) {
 
-          const recognition2 = new SpeechRecognition();
+        /*  const recognition2 = new SpeechRecognition();
             recognition2.lang = 'en-US';
           recognition2.interimResults = false;
           recognition2.maxAlternatives = 1;
@@ -51,10 +44,10 @@ recognition.onnomatch = function() {
           var speechResult2 = event.results[0][0].transcript
 
           console.log("2nd " + speechResult2)
-        }
+        }*/
 
     } else {
-      console.log("not searching")
+      console.log("you didnt say search")
     }
 
     console.log('Confidence: ' + event.results[0][0].confidence);
