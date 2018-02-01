@@ -66,10 +66,12 @@ recognition.onnomatch = function() {
   }
 
   recognition.onerror = function(event) {
-    //testBtn.disabled = false;
-    //testBtn.textContent = 'Start new test';
-    //diagnosticPara.textContent = 'Error occurred in recognition: ' + event.error;
+    console.log("error occured")
   }
+
+  recognition.onaudiostart = function() {
+  console.log('Audio capturing started');
+}
 
 }
 
