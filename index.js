@@ -27,6 +27,10 @@ const testSpeech= ()=> {
   recognition.maxAlternatives = 1;
   recognition.start();
 
+  recognition.onstart = function() {
+  console.log('Speech recognition service has started');
+}
+
   recognition.onresult = function(event) {
    
     var speechResult = event.results[0][0].transcript;
