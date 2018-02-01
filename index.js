@@ -32,7 +32,7 @@ recognition.onnomatch = function() {
   recognition.onresult = function(event) {
    
     var speechResult = event.results[0][0].transcript;
-    let speech =speechResult.split(" ").shift().join(" ")
+    let speech =speechResult.split(" ").splice(0,1).join(" ")
     console.log(speech)
     if(speechResult === phrase) {
 
