@@ -31,6 +31,10 @@ const testSpeech= ()=> {
   console.log('Speech recognition service has started');
 }
 
+recognition.onnomatch = function() {
+  console.log('Speech not recognised');
+}
+
   recognition.onresult = function(event) {
    
     var speechResult = event.results[0][0].transcript;
