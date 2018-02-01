@@ -47,9 +47,9 @@ recognition.onnomatch = function() {
     let speech =speechArr.join(" ")
     console.log(speech)
     resultObj.detectedSpeech=speech
-    
+
     $.ajaxSetup({cache:false});
-    $.getJSON(resultObj.wikiApi,(data)=> {
+    $.get(resultObj.wikiApi,(data)=> {
       resultObj.resultText=data.query.extract
       $("#daTitle").text(speech)
       $("#daMaintext").text(resultObj.resultText)
