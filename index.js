@@ -7,6 +7,16 @@ const SpeechRecognitionEvent =  webkitSpeechRecognitionEvent;
 
 const phrase = "find"
 
+const resultObj ={
+  detectedSpeech:"",
+  speechToUse:encodeURIComponent(detectedSpeech),//remember to encode it e.g Albert%20Einstein
+  wikiApi:"https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&" +
+  "titles="+resultObj.speechToUse+"&format=json&exsentences=3&exsectionformat=raw&explaintext",
+  wikiImage:"https://en.wikipedia.org/w/api.php?action=query&titles="+resultObj.speechToUse+"&prop=pageimages&format=json&pithumbsize=100",
+  resultText:"",
+  resultImageUrl:"",
+}
+
 const testSpeech= ()=> {
   
 
@@ -32,9 +42,19 @@ recognition.onnomatch = function() {
   recognition.onresult = function(event) {
    
     var speechResult = event.results[0][0].transcript;
-    let speech =speechResult.split(" ").splice(0,1).join(" ")
+    let speechArr =speechResult.split(" ")
+    speechArr.shift()
+    let speech =speechArr.join(" ")
     console.log(speech)
-    if(speechResult === phrase) {
+    resultObj.detectedSpeech=speech
+
+    $.getJSON(resultObj.wikiApi,(data)=> {
+      resultObj.resultText=data.query.extract
+      $("#daTitle").text(speech)
+      $("#daMaintext").text(resultObj.resultText)
+    })
+
+    /*if(speechResult === phrase) {
 
         /*  const recognition2 = new SpeechRecognition();
             recognition2.lang = 'en-US';
@@ -45,19 +65,17 @@ recognition.onnomatch = function() {
           var speechResult2 = event.results[0][0].transcript
 
           console.log("2nd " + speechResult2)
-        }*/
+        }
 
     } else {
       console.log("you didnt say find")
-    }
+    }*/
 
     console.log('Confidence: ' + event.results[0][0].confidence);
   }
 
   recognition.onspeechend = function() {
     recognition.stop();
-    //testBtn.disabled = false;
-    //testBtn.textContent = 'Start new test';
   }
 
   recognition.onerror = function(event) {
