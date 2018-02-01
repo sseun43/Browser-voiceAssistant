@@ -9,10 +9,10 @@ const phrase = "find"
 
 const resultObj ={
   detectedSpeech:"",
-  speechToUse:encodeURIComponent(resultObj.detectedSpeech),//remember to encode it e.g Albert%20Einstein
+  speechToUse:encodeURIComponent(this.detectedSpeech),//remember to encode it e.g Albert%20Einstein
   wikiApi:"https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&" +
-  "titles="+resultObj.speechToUse+"&format=json&exsentences=3&exsectionformat=raw&explaintext",
-  wikiImage:"https://en.wikipedia.org/w/api.php?action=query&titles="+resultObj.speechToUse+"&prop=pageimages&format=json&pithumbsize=100",
+  "titles="+this.speechToUse+"&format=json&exsentences=3&exsectionformat=raw&explaintext",
+  wikiImage:"https://en.wikipedia.org/w/api.php?action=query&titles="+this.speechToUse+"&prop=pageimages&format=json&pithumbsize=100",
   resultText:"",
   resultImageUrl:"",
 }
