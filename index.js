@@ -66,7 +66,7 @@ recognition.onnomatch = function() {
   }
 
   recognition.onerror = function(event) {
-    console.log("error occured" + event.error)
+    console.log("error occured " + event.error)
   }
 
   recognition.onaudiostart = function() {
