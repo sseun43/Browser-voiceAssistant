@@ -38,7 +38,7 @@ recognition.onnomatch = function() {
   recognition.onresult = function(event) {
    
     var speechResult = event.results[0][0].transcript;
-    console.log(speechResult)
+    console.log("1st " + speechResult)
     //diagnosticPara.textContent = 'Speech received: ' + speechResult + '.';
     if(speechResult === phrase) {
 
@@ -49,7 +49,8 @@ recognition.onnomatch = function() {
         recognition2.start();
         recognition2.onresult = function(event){
           var speechResult2 = event.results[0][0].transcript
-          console.log(speechResult2)
+
+          console.log("2nd " + speechResult2)
         }
 
     } else {
