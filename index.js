@@ -10,9 +10,9 @@ const phrase = "find"
 const resultObj ={
   detectedSpeech:"",
   speechToUse:encodeURIComponent(this.detectedSpeech),//remember to encode it e.g Albert%20Einstein
-  wikiApi:"https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&" +
+  wikiApi:"https://git.heroku.com/gentle-castle-65819.git/https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&" +
   "titles="+this.speechToUse+"&format=json&exsentences=3&exsectionformat=raw&explaintext",
-  wikiImage:"https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&titles="+this.speechToUse+"&prop=pageimages&format=json&pithumbsize=100",
+  wikiImage:"https://git.heroku.com/gentle-castle-65819.git/https://en.wikipedia.org/w/api.php?action=query&titles="+this.speechToUse+"&prop=pageimages&format=json&pithumbsize=100",
   resultText:"",
   resultImageUrl:"",
 }
