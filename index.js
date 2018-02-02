@@ -90,4 +90,9 @@ recognition.onnomatch = function() {
 
 $("#daButton").click(testSpeech)
 
+ addEventListener("keydown", function(event) {
+    if (event.keyCode == 13)
+      testSpeech()
+  });
+
 });
