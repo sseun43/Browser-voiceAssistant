@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function(){ 
 
 const synth = window.speechSynthesis;
 const SpeechRecognition =  webkitSpeechRecognition;
@@ -67,9 +67,9 @@ recognition.onnomatch = function() {
     })
 
        
-        }
+        
 
-    }
+   
 
     console.log('Confidence: ' + event.results[0][0].confidence);
   }
