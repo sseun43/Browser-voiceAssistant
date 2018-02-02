@@ -50,8 +50,8 @@ recognition.onnomatch = function() {
 
     $.ajaxSetup({cache:false});
     $.getJSON(resultObj.wikiApi,(data)=> {
-      resultObj.resultText=data.query.extract
-      console.log(data.query.extract)
+      resultObj.resultText=Object.keys(data.query.pages)[0].extract
+      console.log(resultObj.resultText)
       $("#daTitle").text(speech)
       $("#daMaintext").text(resultObj.resultText)
     })
