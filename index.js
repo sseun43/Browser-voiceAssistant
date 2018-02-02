@@ -69,9 +69,7 @@ recognition.onnomatch = function() {
        
         }
 
-    } else {
-      console.log("you didnt say find")
-    }*/
+    }
 
     console.log('Confidence: ' + event.results[0][0].confidence);
   }
