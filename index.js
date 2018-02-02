@@ -57,6 +57,12 @@ recognition.onnomatch = function() {
       $("#daMaintext").text(resultObj.resultText)
     })
 
+    $.getJSON(resultObj.wikiImage,(data)=>{
+      resultObj.resultImageUrl=data.query.pages[Object.keys(data.query.pages)[0]].thumbnail.source
+
+      $("#daImage").attr("src",resultObj.resultImageUrl)
+    })
+
     /*if(speechResult === phrase) {
 
         /*  const recognition2 = new SpeechRecognition();
