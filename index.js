@@ -9,10 +9,10 @@ const phrase = "find"
 
 const resultObj ={
   detectedSpeech:"",
-  speechToUse:encodeURIComponent(this.detectedSpeech),//remember to encode it e.g Albert%20Einstein
-  wikiApi:"https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&" +
-  "titles="+this.speechToUse+"&format=json&exsentences=3&exsectionformat=raw&explaintext",
-  wikiImage:"https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&titles="+this.speechToUse+"&prop=pageimages&format=json&pithumbsize=100",
+  get speechToUse(){return encodeURIComponent(this.detectedSpeech)},
+  get wikiApi(){return ("https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&" +
+  "titles="+this.speechToUse+"&format=json&exsentences=3&exsectionformat=raw&explaintext")},
+  get wikiImage(){return ("https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&titles="+this.speechToUse+"&prop=pageimages&format=json&pithumbsize=100")},
   resultText:"",
   resultImageUrl:"",
 }
@@ -47,11 +47,12 @@ recognition.onnomatch = function() {
     let speech =speechArr.join(" ")
     console.log(speech)
     resultObj.detectedSpeech=speech
+    
 
     $.ajaxSetup({cache:false});
     $.getJSON(resultObj.wikiApi,(data)=> {
       resultObj.resultText=data.query.pages[Object.keys(data.query.pages)[0]].extract
-      console.log(data.query.pages[Object.keys(data.query.pages)[0]])
+      
       $("#daTitle").text(speech)
       $("#daMaintext").text(resultObj.resultText)
     })
