@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-
+const synth = window.speechSynthesis;
 const SpeechRecognition =  webkitSpeechRecognition;
 const SpeechGrammarList =  webkitSpeechGrammarList;
 const SpeechRecognitionEvent =  webkitSpeechRecognitionEvent;
@@ -55,6 +55,9 @@ recognition.onnomatch = function() {
       
       $("#daTitle").text(speech)
       $("#daMaintext").text(resultObj.resultText)
+      const utterThis = new SpeechSynthesisUtterance(resultObj.resultText)
+      utterThis.lang ='en-US'
+      synth.speak(utterThis)
     })
 
     $.getJSON(resultObj.wikiImage,(data)=>{
@@ -63,17 +66,7 @@ recognition.onnomatch = function() {
       $("#daImage").attr("src",resultObj.resultImageUrl)
     })
 
-    /*if(speechResult === phrase) {
-
-        /*  const recognition2 = new SpeechRecognition();
-            recognition2.lang = 'en-US';
-          recognition2.interimResults = false;
-          recognition2.maxAlternatives = 1;
-        recognition2.start();
-        recognition2.onresult = function(event){
-          var speechResult2 = event.results[0][0].transcript
-
-          console.log("2nd " + speechResult2)
+       
         }
 
     } else {
