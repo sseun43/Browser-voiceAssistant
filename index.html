@@ -1,63 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://unpkg.com/papercss@1.4.1/dist/paper.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="index.js"></script>
-  <title>Wiki voice</title>
-</head>
-<body>
-  <div class="paper container">
-    <h1>Knowledge Fountain</h1>
-    <p id="daVoice">This is where some content would go.</p>
-  </div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script src="index.js"></script>
+    <title>Wiki voice</title>
+  </head>
 
- <div class="row">
-  <div class="col-4 col"></div>
-  <div class="col-4 col">
-    <div class="row">
-      <div class="col-4 col"></div>
-      <div class="col-4 col">
-        <button id="daButton" class="btn-large btn-secondary">Start</button>
-      </div>
-      <div class="col-4 col"></div>
-  </div>
-    
-  </div>
-  <div class="col-4 col"></div>
-</div>
-
-<div class="row">
-  <div class="col-4 col"></div>
-  <div class="col-4 col">
-    <img id="daImage" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Al-Farabi.jpg/80px-Al-Farabi.jpg" alt="Random Unsplash"  width="400" height="400">
-  </div>
-  <div class="col-4 col"></div>
-</div>
-
-
-
-<div class="row">
-  <div class="col-4 col"></div>
-  <div class="col-4 col">
-       <div class="card" style="width: 20rem;">
-        <div class="card-body">
-          <h4 class="card-title" id="daTitle">My awesome Paper card!</h4>
-          <h5 class="card-subtitle" id="daSubtitle">Descrption</h5>
-          <p class="card-text" id="daMaintext">This is another example of a card without image. Cards are also meant to be used without images, but with text/links/buttons.</p>
-          <a id="daLink" class="card-link" href="#">First link</a>
-         
+  <body>
+    <div class="container-fluid text-center">
+      
+        <div class="jumbotron">
+          <h1 class="display-4">Knowledge Fountain</h1>
+          <p class="lead">Use voice command to search for information by saying the keyword "Find". E,g "FIND finland" or "FIND albert eistein</p>
         </div>
+
+        
+        <div id="daLoader"></div>
+      
+            <div class="row">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4"><button type="button" id="daButton" class="btn btn-primary btn-lg">Press enter or Click</button></div>
+              
+              <div class="col-sm-4"></div>
+            </div>
+           
+            <div class="row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-8">
+       <div class="card" >
+          <div class="card-body">
+            <h5 class="card-title" id="daTitle">Card title</h5>
+            <p class="card-text" id="daMaintext">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            
+          </div>
       </div>
-  </div>
-  <div class="col-4 col"></div>
-</div>
-
-  
-
-
-</body>
+    </div>
+      <div class="col-sm-2"></div>
+    </div>
+      </div>
+  </body>
 </html>
