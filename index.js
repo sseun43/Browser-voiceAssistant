@@ -11,7 +11,7 @@ const resultObj ={
   detectedSpeech:"",
   get speechToUse(){return encodeURIComponent(this.detectedSpeech)},
   get wikiApi(){return ("https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&" +
-  "titles="+this.speechToUse+"&format=json&exsentences=3&exsectionformat=raw&explaintext")},
+  "titles="+this.speechToUse+"&format=json&exsentences=2&exsectionformat=raw&explaintext")},
   get wikiImage(){return ("https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&titles="+this.speechToUse+"&prop=pageimages&format=json&pithumbsize=100")},
   resultText:"",
   resultImageUrl:"",
@@ -64,9 +64,9 @@ recognition.onnomatch = function() {
       synth.speak(utterThis)
       $("#daLoader").text("Ready to listen to your commands")
     }else{
-      $("#daTitle").text("Bad command :Pls try again")
+      $("#daTitle").text("Bad command :please try again with different word")
       $("#daMaintext").text("")
-      const utterThis = new SpeechSynthesisUtterance("Bad command :Pls try again")
+      const utterThis = new SpeechSynthesisUtterance("Bad command :please try again with different word")
       utterThis.lang ='en-US'
       synth.speak(utterThis)
     }
