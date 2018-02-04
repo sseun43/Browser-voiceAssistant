@@ -31,44 +31,46 @@ const testSpeech= ()=> {
   recognition.maxAlternatives = 1;
   recognition.start();
 
-  recognition.onstart = function() {
-  //console.log('Speech recognition service has started');
-}
+    recognition.onstart = function() {
+    //console.log('Speech recognition service has started');
+  }
 
-recognition.onnomatch = function() {
-  console.log('Speech not recognised');
-}
+  recognition.onnomatch = function() {
+    console.log('Speech not recognised');
+  }
 
   recognition.onresult = function(event) {
    
     var speechResult = event.results[0][0].transcript;
 
-    $("#daLoader").text("Detected " + speechResult)
-
-    let speechArr =speechResult.split(" ")
-    speechArr.shift()
-    let speech =speechArr.join(" ")
-    console.log(speech)
-    resultObj.detectedSpeech=speech
+      $("#daLoader").text("Detected " + speechResult)
+      let speechArr =speechResult.split(" ")
+      speechArr.shift()
+      let speech =speechArr.join(" ")
+      console.log(speech)
+      resultObj.detectedSpeech=speech
     
 
     $.ajaxSetup({cache:false});
-    $.getJSON(resultObj.wikiApi,(data)=> {
+
+    $.getJSON(resultObj.wikiApi,(data)=> {  
       resultObj.resultText=data.query.pages[Object.keys(data.query.pages)[0]].extract
 
       if(resultObj.resultText){
-        $("#daTitle").text(speech)
+      $("#daTitle").text(speech)
       $("#daMaintext").text(resultObj.resultText)
-      const utterThis = new SpeechSynthesisUtterance(resultObj.resultText)
-      utterThis.lang ='en-US'
-      synth.speak(utterThis)
+
+        const utterThis = new SpeechSynthesisUtterance(resultObj.resultText)
+        utterThis.lang ='en-US'
+        synth.speak(utterThis)
+        
       $("#daLoader").text("Ready to listen to your commands")
     }else{
       $("#daTitle").text("Bad command :please try again with different word")
       $("#daMaintext").text("")
-      const utterThis = new SpeechSynthesisUtterance("Bad command :please try again with different word")
-      utterThis.lang ='en-US'
-      synth.speak(utterThis)
+        const utterThis = new SpeechSynthesisUtterance("Bad command :please try again with different word")
+        utterThis.lang ='en-US'
+        synth.speak(utterThis)
     }
       
       
