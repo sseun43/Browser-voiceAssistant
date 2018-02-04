@@ -18,7 +18,7 @@ const resultObj ={
 }
 
 const testSpeech= ()=> {
-  
+  $("#daLoader").text("Ready to listen to your commands..")
 
   const grammar = '#JSGF V1.0; grammar phrase; public <phrase> = ' + phrase +';';
   const recognition = new SpeechRecognition();
@@ -32,7 +32,7 @@ const testSpeech= ()=> {
   recognition.start();
 
   recognition.onstart = function() {
-  console.log('Speech recognition service has started');
+  //console.log('Speech recognition service has started');
 }
 
 recognition.onnomatch = function() {
@@ -42,6 +42,9 @@ recognition.onnomatch = function() {
   recognition.onresult = function(event) {
    
     var speechResult = event.results[0][0].transcript;
+
+    $("#daLoader").text("Detected " + speechResult)
+
     let speechArr =speechResult.split(" ")
     speechArr.shift()
     let speech =speechArr.join(" ")
@@ -52,12 +55,23 @@ recognition.onnomatch = function() {
     $.ajaxSetup({cache:false});
     $.getJSON(resultObj.wikiApi,(data)=> {
       resultObj.resultText=data.query.pages[Object.keys(data.query.pages)[0]].extract
-      
-      $("#daTitle").text(speech)
+
+      if(resultObj.resultText){
+        $("#daTitle").text(speech)
       $("#daMaintext").text(resultObj.resultText)
       const utterThis = new SpeechSynthesisUtterance(resultObj.resultText)
       utterThis.lang ='en-US'
       synth.speak(utterThis)
+      $("#daLoader").text("Ready to listen to your commands")
+    }else{
+      $("#daTitle").text("Bad command :Pls try again")
+      $("#daMaintext").text("")
+      const utterThis = new SpeechSynthesisUtterance("Bad command :Pls try again")
+      utterThis.lang ='en-US'
+      synth.speak(utterThis)
+    }
+      
+      
     })
 
     $.getJSON(resultObj.wikiImage,(data)=>{
@@ -74,8 +88,13 @@ recognition.onnomatch = function() {
     console.log('Confidence: ' + event.results[0][0].confidence);
   }
 
+  recognition.onspeechstart = function() {
+  $("body").css("background-color","#B0E0E6")
+}
+
   recognition.onspeechend = function() {
     recognition.stop();
+    $("body").css("background-color","white")
   }
 
   recognition.onerror = function(event) {
